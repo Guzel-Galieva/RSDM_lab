@@ -6,19 +6,19 @@ task_1_build:
   stage: build
   image: mcr.microsoft.com/dotnet/sdk:6.0
   script:
-    - dotnet build tasks/task_1/task_1.csproj
+    - dotnet build lab_1/task_1/task_1.csproj
   artifacts:
     paths:
-      - tasks/task_2/bin/Debug/net6.0/*
+      - lab_1/task_2/bin/Debug/net6.0/*
   
 task_1_run:
   stage: run
   image: mcr.microsoft.com/dotnet/runtime:6.0
   dependencies:
-    - task-1-build
+    - task_1_build
   script:
     - echo $MONEY
-    - dotnet tasks/task_1/bin/Debug/net6.0/task_1.dll $MONEY > answer.txt
+    - dotnet lab_1/task_1/bin/Debug/net6.0/task_1.dll $MONEY > answer.txt
   artifacts:
     paths:
       - answer.txt
